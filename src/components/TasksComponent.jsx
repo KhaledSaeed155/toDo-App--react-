@@ -85,9 +85,22 @@ const TasksComponent = ({ tasks, setTasks }) => {
                                                 e.stopPropagation(); // 3sham mfta7sh modal lma a3ml check
                                                 handleComplete(tasks.indexOf(task));
                                             }}
-                                            className="p-2 rounded-lg bg-blue-100 text-blue-700 dark:bg-blue-900/30"
+                                            className={`p-2 rounded-lg transition-all duration-200 transform hover:scale-105 ${
+                                                task.isComplete
+                                                    ? 'bg-green-100 hover:bg-green-200 text-green-700 dark:bg-green-900/30 dark:hover:bg-green-900/50 dark:text-green-400 shadow-sm'
+                                                    : 'bg-blue-100 hover:bg-blue-200 text-blue-700 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 dark:text-blue-400 shadow-sm'
+                                            }`}
+                                            title={task.isComplete ? 'Mark as incomplete' : 'Mark as complete'}
                                         >
-                                            {task.isComplete ? 'Undo' : 'Done'}
+                                            {task.isComplete ? (
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6 6" />
+                                                </svg>
+                                            ) : (
+                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            )}
                                         </button>
                                         <button
                                             onClick={(e) => {
