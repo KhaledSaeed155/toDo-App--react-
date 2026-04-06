@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const TasksComponent = ({ tasks, setTasks }) => {
     const [showCompleted, setShowCompleted] = useState(false);
-    // 1. State لإدارة الـ Modal والمهمة المختارة
+    // lw fe data eftah modal mfesh ht2flo
     const [selectedTask, setSelectedTask] = useState(null);
 
     const deleteTask = (index) => {
@@ -19,7 +19,7 @@ const TasksComponent = ({ tasks, setTasks }) => {
         localStorage.setItem('tasks', JSON.stringify(newTasks));
     };
 
-    // 2. Function لفتح الـ Modal وتحديد المهمة
+    // open modal
     const taskDetails = (task) => {
         setSelectedTask(task);
     };
@@ -30,7 +30,7 @@ const TasksComponent = ({ tasks, setTasks }) => {
 
     return (
         <div className="w-full">
-            {/* Header section... (نفس الكود الخاص بك) */}
+     
             <div className="from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 rounded-xl p-6 mb-6 border border-blue-100 dark:border-gray-700">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
