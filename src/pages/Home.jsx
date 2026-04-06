@@ -1,23 +1,30 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TasksComponent from '../components/TasksComponent';
+import Toast from '../components/Toast';
 
 const Home = () => {
   const [taskTitle, setTaskTitle] = useState('');
   const [taskDesc, setTaskDesc] = useState('');
-  const [isComplete, setIsComplete] = useState(false);
-const [tasks, setTasks] = useState([]);
-
+  const [tasks, setTasks] = useState([]);
+  const [toast, setToast] = useState({ message: '', isVisible: false });
 
   const addTask = (e) => {
     e.preventDefault(); 
     
     if (taskTitle.trim() === '') return; 
 
-    const newTasks = [...tasks, { title: taskTitle, description: taskDesc ,isComplete: false }];
+    const newTasks = [...tasks, { title: taskTitle, description: taskDesc, isComplete: false }];
     setTasks(newTasks);
     localStorage.setItem('tasks', JSON.stringify(newTasks));
     setTaskTitle('');
     setTaskDesc('');
+    
+    // Show toast notification
+    setToast({ message: 'Task added successfully!', isVisible: true });
+  };
+
+  const closeToast = () => {
+    setToast({ message: '', isVisible: false });
   };
 
   useEffect(() => {
@@ -52,7 +59,15 @@ const [tasks, setTasks] = useState([]);
           Add Task
         </button>
       </form>
-      <TasksComponent tasks={tasks} setTasks={setTasks} />
+     
+    
+      
+      {/* Toast Notification */}
+      <Toast 
+        message={toast.message} 
+        isVisible={toast.isVisible} 
+        onClose={closeToast} 
+      />
     </div>
   );
 };
